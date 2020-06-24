@@ -1,33 +1,25 @@
-package checkeg
-
-import (
-	"net/http"
-	"time"
-)
-
-//CheckURL is
-func CheckURL(url string) {
+func CheckUrL(url string, scode []int) (string, string) {
 
 	for {
 		resp, err := http.Get(url)
 		if err != nil {
 			print(err.Error())
 		} else {
+			for _, num := range scode {
 
-			if resp.StatusCode == 200 || resp.StatusCode == 301 || resp.StatusCode == 302 {
-				println(string(resp.StatusCode) + resp.Status)
-				//println(resp.StatusCode)
-				println("okkk")
+				if num == resp.StatusCode {
 
-			} else {
-				//println(string(resp.StatusCode) + resp.Status)
-				println("Down")
+					return "check is healthy", resp.Status
 
+				} else {
+					
+					return "check is un healthy", resp.Status
+				}
 			}
 
 		}
-		t1 := time.NewTimer(5 * time.Second)
-		<-t1.C
+		/*t1 := time.NewTimer(5 * time.Second)
+		<-t1.C*/
 	}
 
 }
