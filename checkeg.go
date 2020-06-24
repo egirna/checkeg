@@ -1,3 +1,10 @@
+package checkeg
+
+import (
+	"net/http"
+)
+
+
 func CheckUrL(url string, scode []int) (string, string) {
 
 	for {
