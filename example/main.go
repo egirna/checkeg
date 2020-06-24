@@ -1,8 +1,12 @@
-package main
+import (
+	"fmt"
 
-import "github.com/egirna/checkeg"
+	"github.com/egirna/checkeg"
+)
 
 func main() {
-
-	checkeg.CheckURL("https://golangbot.com/go-packages/")
+	
+	fmt.Println(checkeg.CheckUrL("https://golangbot.com/go-packages/", []int{200, 300}))
+	//fmt.Println(checkeg.CheckUrL("https://www.yahoo.com/games", []int{400, 500}))
+	
 }
