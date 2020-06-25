@@ -1,7 +1,10 @@
 package checkeg
 
 import (
+	"net"
 	"net/http"
+	"time"
+	
 )
 
 
@@ -29,4 +32,18 @@ func CheckUrL(url string, scode []int) (string, string) {
 		<-t1.C*/
 	}
 
+}
+//TCPcheck is
+func TCPcheck(host, port string, timeout time.Duration) (string, string) {
+	addr := net.JoinHostPort(host, port)
+	conn, err := net.DialTimeout("tcp", addr, timeout)
+	if err != nil {
+		return "False", err.Error()
+		//println(err.Error())
+	} else if conn != nil {
+		//println(conn)
+		return "True", " "
+	} else {
+		return " ", "nothing"
+	}
 }
