@@ -34,16 +34,16 @@ func CheckUrL(url string, scode []int) (string, string) {
 
 }
 //TCPcheck is
-func TCPcheck(host, port string, timeout time.Duration) (string, string) {
+func TCPcheck(host, port string, timeout time.Duration) (bool, string) {
 	addr := net.JoinHostPort(host, port)
 	conn, err := net.DialTimeout("tcp", addr, timeout)
 	if err != nil {
-		return "False", err.Error()
-		//println(err.Error())
-	} else if conn != nil {
-		//println(conn)
-		return "True", " "
+		return false, err.Error()
+		
 	} else {
-		return " ", "nothing"
+		defer conn.Close()
+		return true, ""
+
 	}
+	
 }
